@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") //server/.env DATABASE_URL="file:../src/database/db.sqlite"
 }
 
 model Game {
