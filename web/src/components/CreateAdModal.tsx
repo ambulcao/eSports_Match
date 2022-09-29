@@ -34,15 +34,33 @@ export function CreateAdModal() {
     const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    axios.post(`http://localhost:3333/games/${data.game}/ads`, {
-      "name": data.name,
-      "yearsPlaying": Number(data.yearsPlaying),
-      "discord": data.discord,
-      "weekDays": weekDays.map(Number),
-      "hourStart": data.yourStart,
-      "hourEnd": data.yourEnd,
-      "useVoiceChannel": useVoiceChannel
+    console.log(data);
+    console.log(weekDays);
+
+   {/*const formData = new FormData(event.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+
+    //validação
+    if(!data.name) {
+      return;
+    }
+
+    try {
+      await axios.post(`http://localhost:3333/games/${data.game}/ads`, {
+      name: data.name,
+      yearsPlaying: Number(data.yearsPlaying),
+      discord: data.discord,
+      weekDays: weekDays.map(Number),
+      hourStart: data.yourStart,
+      hourEnd: data.yourEnd,
+      useVoiceChannel: useVoiceChannel
     })
+
+    alert('Anúncio criado com sucesso')
+    } catch (err) {
+      console.log(err);
+      alert('Erro ao criar o anúncio!')
+    }*/}
   }
 
   return (
@@ -69,11 +87,9 @@ export function CreateAdModal() {
                       </Select.Trigger>
                     </Select.Root>
               */}
-              <option disabled selected value="">Selecione o game que deseja jogar</option>
+              <option disabled value="">Selecione o game que deseja jogar</option>
               {games.map(game => {
-                return (
-                  <option key={game.id} value={game.id}>{game.title}</option>
-                )
+                return <option key={game.id} value={game.id}>{game.title}</option>
               })}
             </select>
           </div>
@@ -97,7 +113,7 @@ export function CreateAdModal() {
             <div className="flex flex-col gap-2">
               <label htmlFor="weekDays">Quando costuma jogar?</label>
 
-              <div className="">
+              <div>
                 <ToggleGroup.Root 
                   type="multiple" 
                   className="grid grid-cols-9 gap-2"
@@ -158,8 +174,8 @@ export function CreateAdModal() {
             <div className="flex flex-col gap-2 flex-1">
               <label htmlFor="hourStart">Qual horário do dia?</label>
               <div className="grid grid-cols-2 gap-2">
-                <Input name="hourStart" id="hourStart" type="text" placeholder="De" />
-                <Input name="hourEnd" id="hourEnd" type="text" placeholder="Até" />
+                <Input name="hourStart" id="hourStart" type="time" placeholder="De" />
+                <Input name="hourEnd" id="hourEnd" type="time" placeholder="Até" />
               </div>
             </div>
           </div>
