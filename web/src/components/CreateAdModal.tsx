@@ -34,9 +34,9 @@ export function CreateAdModal() {
     const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    console.log(data);
-    console.log(weekDays);
-
+    axios.post(`http://localhost:3333/games/${data.game}/ads`, {
+      
+    })
    {/*const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
