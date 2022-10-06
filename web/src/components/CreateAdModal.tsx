@@ -34,9 +34,27 @@ export function CreateAdModal() {
     const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    axios.post(`http://localhost:3333/games/${data.game}/ads`, {
-      
+  
+    if(!data.name) {
+      return;
+    }
+
+    try { 
+      await axios.post(`http://localhost:3333/games/${data.game}/ads`, {
+      name: data.name,
+      yearsPlaying: Number(data.yearsPlaying),
+      discord: data.discord,
+      weekDays: weekDays.map(Number),
+      hourStart: data.hourStart,
+      hourEnd: data.hourEnd,
+      useVoiceChannel: useVoiceChannel
     })
+
+    alert('Anúncio criado com sucesso!');
+    } catch (err) {
+      console.log(err);
+      alert('Erro ao criar o anúncio!');
+    }
    {/*const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
