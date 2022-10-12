@@ -13,8 +13,9 @@ import { styles } from './styles';
 import { GameParams } from '../../@types/navigation';
 
 import { DuoCard, DuoCardProps } from '../../components/DuoCard';
-import { Heading } from '../../components/Heading';
 import { Background } from '../../components/Background';
+import { Heading } from '../../components/Heading';
+import { DuoMatch } from '../../components/DuoMatch';
 
 export function Game() {
 
@@ -87,6 +88,11 @@ export function Game() {
               Não há anúncios publicados para esse jogo.
             </Text>
           )}
+        />
+
+        <DuoMatch 
+          visible={true}
+          discord={"AlexBullcao#2"}
         />
 
       </SafeAreaView>
