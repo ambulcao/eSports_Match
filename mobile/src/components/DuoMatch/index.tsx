@@ -2,15 +2,17 @@ import React from 'react';
 
 import { View, Modal, ModalProps, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { CheckCircle } from 'phosphor-react-native';
 
 import { styles } from './styles';
 import { THEME } from '../../theme';
 
 interface Props extends ModalProps {
   discord: string;
+  onClose: () => void;
 }
 
-export function DuoMatch({ discord, ...rest }: Props){
+export function DuoMatch({ discord, onClose, ...rest }: Props){
   return (
     <Modal
       transparent
@@ -21,6 +23,7 @@ export function DuoMatch({ discord, ...rest }: Props){
         <View style={styles.content}>
           <TouchableOpacity
             style={styles.closeIcon}
+            onPress={onClose}
           >
             <MaterialIcons 
               name="close"
@@ -28,6 +31,12 @@ export function DuoMatch({ discord, ...rest }: Props){
               color={THEME.COLORS.CAPTION_500}
             />
           </TouchableOpacity>
+
+          <CheckCircle 
+            size={64}
+            color={THEME.COLORS.SUCCESS}
+            weight="bold"
+          />
 
           <Text style={styles.discord}>
               {discord}
