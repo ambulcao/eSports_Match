@@ -99,7 +99,7 @@ export function Game() {
 
         <DuoMatch 
           visible={discordDuoSelected.length > 0}
-          discord="AlexBullcao#2"
+          discord={discordDuoSelected}
           onClose={() => setDiscordDuoSelected('')}
         />
 
